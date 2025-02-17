@@ -16,6 +16,7 @@ public class ClockDisplay
 {
     private NumberDisplay hours;
     private NumberDisplay minutes;
+    private String displayString;
     private boolean PM;
     // simulates the actual display
     
@@ -66,11 +67,11 @@ public class ClockDisplay
             hours.setValue(hour-12);
             PM = true;
         }
-        if (hour==12){
+        else if (hour==12){
             hours.setValue(hour);
             PM=true;
         }
-        if (hour==0){
+        else if (hour==0){
             hours.setValue(12);
             PM = false;
         }
