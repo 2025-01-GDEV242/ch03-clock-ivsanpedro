@@ -17,7 +17,6 @@ public class ClockDisplay
     private NumberDisplay hours;
     private NumberDisplay minutes;
     private String displayString;
-    private boolean PM;
     // simulates the actual display
     
     /**
@@ -62,20 +61,8 @@ public class ClockDisplay
      */
     public void setTime(int hour, int minute)
     {
-        minutes.setValue(minute);
-        if (hour > 12){
-            hours.setValue(hour-12);
-            PM = true;
-        }
-        else if (hour==12){
-            hours.setValue(hour);
-            PM=true;
-        }
-        else if (hour==0){
-            hours.setValue(12);
-            PM = false;
-        }
         hours.setValue(hour);
+        minutes.setValue(minute);
         updateDisplay();
     }
 
@@ -84,6 +71,7 @@ public class ClockDisplay
      */
     public String getTime()
     {
+        updateDisplay();
         return displayString;
     }
     
@@ -100,6 +88,12 @@ public class ClockDisplay
         }
         else{
             meridian = "AM";
+        }
+        if (hour>=12){
+            hour = hour - 12;
+        }
+        if (hour==0){
+            hour =12;
         }
         displayString = hours.getDisplayValue() + ":" + 
                         minutes.getDisplayValue() + meridian;
