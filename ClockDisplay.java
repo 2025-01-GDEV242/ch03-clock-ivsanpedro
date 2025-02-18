@@ -92,14 +92,16 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
-        if (PM == true){
-            displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue() + "PM";
+        int hour = hours.getValue();
+        String meridian;
+        
+        if (hour >=12){
+            meridian = "PM";
         }
         else{
-            displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue() + "AM";
+            meridian = "AM";
         }
-        
+        displayString = hours.getDisplayValue() + ":" + 
+                        minutes.getDisplayValue() + meridian;
     }
 }
