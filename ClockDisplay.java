@@ -85,7 +85,7 @@ public class ClockDisplay
         if ((hour>11) && (meridian.equals("AM"))){
             meridian = "PM";
         }
-        if ((hour>11) && (meridian.equals("PM"))){
+        else if ((hour>11) && (meridian.equals("PM"))){
             meridian = "AM";
         } 
         displayString = hours.getDisplayValue() + ":" + 
