@@ -16,7 +16,8 @@ public class ClockDisplay
 {
     private NumberDisplay hours;
     private NumberDisplay minutes;
-    private String displayString;    // simulates the actual display
+    private String displayString;
+    private String meridian;// simulates the actual display
     
     /**
      * Constructor for ClockDisplay objects. This constructor 
@@ -26,6 +27,7 @@ public class ClockDisplay
     {
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
+        meridian = new String();
         updateDisplay();
     }
 
@@ -34,11 +36,11 @@ public class ClockDisplay
      * creates a new clock set at the time specified by the 
      * parameters.
      */
-    public ClockDisplay(int hour, int minute)
+    public ClockDisplay(int hour, int minute, String timeOfDay)
     {
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
-        setTime(hour, minute);
+        setTime(hour, minute, timeOfDay);
     }
 
     /**
@@ -58,10 +60,11 @@ public class ClockDisplay
      * Set the time of the display to the specified hour and
      * minute.
      */
-    public void setTime(int hour, int minute)
+    public void setTime(int hour, int minute, String timeOfDay)
     {
         hours.setValue(hour);
         minutes.setValue(minute);
+        meridian = timeOfDay;
         updateDisplay();
     }
 
@@ -78,7 +81,8 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
+        String timeOfDay = meridian;
         displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue();
+                        minutes.getDisplayValue() + meridian;
     }
 }
